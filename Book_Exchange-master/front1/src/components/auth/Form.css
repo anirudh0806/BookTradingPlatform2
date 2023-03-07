@@ -1,0 +1,85 @@
+.form{
+  background-color: black;
+  background: url("download0.jpg") black;
+  background-size: 500px 600px;
+  background-repeat: no-repeat;
+  margin: 20px auto;
+  width: 1000px;
+  box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 7px 20px 0 rgba(0, 0, 0, 0.2);
+  position: relative;
+  border-radius: 10px;
+  height: 600px;
+}
+.alert{
+    color: red;
+    margin-bottom: 10px;
+    margin-left: 620px;
+}
+h3{
+  padding-top: 50px;
+  color: white;
+  margin-top: 50px;
+  margin-left: 520px;
+  text-align: center;
+}
+
+.form-input{
+  outline: none;
+  margin-left:600px;
+  margin-top: 10px;
+  width: 245px;
+  background-color: black;
+  height: 40px;
+  color: white;
+  border: none;
+  border-left: 2px solid white;
+  padding-left: 10px;
+}
+
+.form-inputs p {
+  margin-left: 600px;
+  font-size: 0.8rem;
+  margin-top: 0.5rem;
+  color: red;
+}
+
+.btn{
+  margin-top: 30px;
+  margin-bottom: 30px;
+  margin-left: 600px;
+  width: 310px;
+  height: 50px;
+  margin-top: 10px;
+  background: linear-gradient(
+  90deg,
+  rgb(39, 176, 255) 0%,
+  rgb(0, 232, 236) 100%
+  );
+  outline: none;
+  border: none;
+  color: white;
+  font-size: 1rem;
+}
+
+.btn:hover {
+  cursor: pointer;
+  background: linear-gradient(
+    90deg,
+    rgb(39, 143, 255) 0%,
+    rgb(12, 99, 250) 100%
+  );
+  transition: all 0.4s ease-out;
+}
+
+.login {
+  font-size:15px;
+  margin-left: 630px;
+  color: #fff;
+  width: 80%;
+  text-align: center;
+  margin-top: 30px;
+}
+.login a{
+  color: #27cdff;
+  font-weight: 600;
+}
