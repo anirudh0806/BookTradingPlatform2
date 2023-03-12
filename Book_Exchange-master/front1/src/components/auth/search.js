@@ -9,18 +9,21 @@ import './search.css';
 export default function Search(props) {
   const cookies = new Cookies();
 
+  const history = useHistory();
   const [data, setData] = useState([]);
   const [cart, setCart] = useState({});
   const [isLoaded, setLoaded] = useState(false);
   const [ignored, forceUpdate] = useReducer((x) => x + 1, 0);
   useEffect(() => {
-    fetch('http://localhost:5000/users/search?email=' + cookies.get('email'))
-      .then((res) => res.json())
-      .then((json) => {
-        setData(json.a);
-        setCart(json.user.cart);
-        setLoaded(true);
-      });
+    if (cookies.get('email')) {
+      fetch('http://localhost:5000/users/search?email=' + cookies.get('email'))
+        .then((res) => res.json())
+        .then((json) => {
+          setData(json.a);
+          setCart(json.user.cart);
+          setLoaded(true);
+        });
+    } else history.push('/login');
   });
 
   function handleClick(e) {
@@ -99,6 +102,10 @@ export default function Search(props) {
             </div>
           ))}
           <br />
+          <div className="text-center text-light">
+            {' '}
+            Can't find your book? <Link to="/find"> Click here</Link>
+          </div>
         </div>
       </ul>
     </div>

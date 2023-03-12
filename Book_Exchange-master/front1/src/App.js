@@ -6,6 +6,7 @@ import Login from './components/auth/login';
 import Register from './components/auth/Register';
 import Fetch from './components/auth/App';
 import Search from './components/auth/search';
+import Searchbar from './components/auth/searchbar';
 
 class App extends Component {
   constructor(props) {
@@ -22,8 +23,11 @@ class App extends Component {
         <Route path="/profile">
           <Fetch></Fetch>
         </Route>
-        <Route path="/search">
+        <Route exact path="/search">
           <Search />
+        </Route>
+        <Route exact path="/find">
+          <Searchbar />
         </Route>
       </Router>
     );

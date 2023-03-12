@@ -1,4 +1,4 @@
-.container{
+.container1{
     position: left;
     background-image: url("https://images.wallpaperscraft.com/image/library_multistorey_architecture_139118_1920x1080.jpg");
     background-repeat: no-repeat;
@@ -37,3 +37,20 @@
     border-radius: 9px;
     border-color: blue;
   }
+  .unga
+  {
+    display: flex;
+    flex-wrap: wrap;
+   flex-direction: row;
+   margin-top: 30px;
+  }
+  
+  .child
+  {
+      width: 25%;
+      padding: 10px;
+      box-sizing: border-box;
+      border: 1px solid black;
+    
+  }
+  

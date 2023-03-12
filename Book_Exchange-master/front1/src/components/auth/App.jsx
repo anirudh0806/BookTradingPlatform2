@@ -1,134 +1,114 @@
-import React, { Component } from 'react';
+import React, { Component, useEffect, useState } from 'react';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
+import { useHistory } from 'react-router-dom';
+import Cookies from 'universal-cookie';
 import { Link } from 'react-router-dom';
 
-class App extends Component {
-  constructor() {
-    super();
-    this.state = {
-      bookname: '',
-      username: '',
-      email: '',
-      phoneno: '',
-    };
-    this.changeBookName = this.changeBookName.bind(this);
-    this.changeUsername = this.changeUsername.bind(this);
-    this.changeEmail = this.changeEmail.bind(this);
-    this.changePhoneno = this.changePhoneno.bind(this);
-    this.onSubmit = this.onSubmit.bind(this);
+export default function App() {
+  const cookies = new Cookies();
+  const history = useHistory();
+  const [bookname, setBookname] = useState('');
+  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
+  const [phoneno, setPhoneno] = useState('');
+  useEffect(() => {
+    if (!cookies.get('email')) history.push('/login');
+  });
+  function changeBookName(event) {
+    setBookname(event.target.value);
   }
-
-  changeBookName(event) {
-    this.setState({
-      bookname: event.target.value,
-    });
+  function changeUsername(event) {
+    setUsername(event.target.value);
   }
-  changeUsername(event) {
-    this.setState({
-      username: event.target.value,
-    });
+  function changeEmail(event) {
+    setEmail(event.target.value);
   }
-  changeEmail(event) {
-    this.setState({
-      email: event.target.value,
-    });
+  function changePhoneno(event) {
+    setPhoneno(event.target.value);
   }
-  changePhoneno(event) {
-    this.setState({
-      phoneno: event.target.value,
-    });
-  }
-  componentDidUpdate() {
-    console.log(this.props.getProps());
-  }
-  onSubmit(event) {
+  function onSubmit(event) {
     event.preventDefault();
     const registered = {
-      bookName: this.state.bookname,
-      username: this.state.username,
-      email: this.state.email,
-      phoneno: this.state.phoneno,
+      bookName: bookname,
+      username: username,
+      email: email,
+      phoneno: phoneno,
     };
 
     axios
       .post('http://localhost:5000/users/profile', registered)
       .then((response) => console.log(response.data));
     alert('Book Added');
-    this.setState({
-      bookname: '',
-      username: '',
-      email: '',
-      phoneno: '',
-    });
+    setBookname('');
+    setUsername('');
+    setEmail('');
+    setPhoneno('');
   }
-
-  render() {
-    return (
-      <div>
-        <div className="container">
-          <div>
-            <br />
-            <br />
-            <form className="form23" onSubmit={this.onSubmit}>
+  return (
+    <div>
+      <div className="container1">
+        <div>
+          <br />
+          <br />
+          <form className="form23" onSubmit={onSubmit}>
+            <input
+              type="text"
+              required
+              placeholder="Book"
+              onChange={changeBookName}
+              value={bookname}
+              className="form-control form-group"
+            />
+            <input
+              type="text"
+              required
+              placeholder="Author"
+              onChange={changeUsername}
+              value={username}
+              className="form-control form-group"
+            />
+            <input
+              type="email"
+              required
+              placeholder="Email"
+              onChange={changeEmail}
+              value={email}
+              className="form-control form-group"
+            />
+            <input
+              type="text"
+              required
+              pattern="^\d{10}$"
+              placeholder="Phone Number (10 digits)"
+              onChange={changePhoneno}
+              value={phoneno}
+              className="form-control form-group"
+            />
+            <div className="d-flex justify-content-between">
               <input
-                type="text"
-                required
-                placeholder="Book"
-                onChange={this.changeBookName}
-                value={this.state.bookname}
-                className="form-control form-group"
+                type="submit"
+                className="  btn btn-outline-primary px-5"
+                value="Sell"
               />
-              <input
-                type="text"
-                required
-                placeholder="Author"
-                onChange={this.changeUsername}
-                value={this.state.username}
-                className="form-control form-group"
-              />
-              <input
-                type="email"
-                required
-                placeholder="Email"
-                onChange={this.changeEmail}
-                value={this.state.email}
-                className="form-control form-group"
-              />
-              <input
-                type="text"
-                required
-                pattern="^\d{10}$"
-                placeholder="Phone Number (10 digits)"
-                onChange={this.changePhoneno}
-                value={this.state.phoneno}
-                className="form-control form-group"
-              />
-              <div className="d-flex justify-content-between">
-                <input
-                  type="submit"
-                  className="  btn btn-outline-primary px-5"
-                  value="Sell"
-                />
-                <Link to="/search" className=" btn btn-outline-primary px-5">
-                  Library
-                </Link>
-                <Link to="/">
-                  <button
-                    value="Sign Out"
-                    onClick={(e) => e.preventDefault()}
-                    className="btn btn-outline-primary px-5">
-                    Sign Out
-                  </button>
-                </Link>
-              </div>
-            </form>
-          </div>
+              <Link to="/search" className=" btn btn-outline-primary px-5">
+                Library
+              </Link>
+              <button
+                value="Sign Out"
+                onClick={(e) => {
+                  e.preventDefault();
+                  cookies.remove('email');
+                  history.push('/');
+                }}
+                className="btn btn-outline-primary px-5">
+                Sign Out
+              </button>
+            </div>
+          </form>
         </div>
       </div>
-    );
-  }
+    </div>
+  );
 }
-
-export default App;
