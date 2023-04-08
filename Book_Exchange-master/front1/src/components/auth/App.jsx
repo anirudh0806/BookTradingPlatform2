@@ -47,67 +47,65 @@ export default function App() {
     setPhoneno('');
   }
   return (
-    <div>
-      <div className="container1">
-        <div>
-          <br />
-          <br />
-          <form className="form23" onSubmit={onSubmit}>
+    <div className="container1 justify-content-center mx-auto px-4">
+      <div>
+        <br />
+        <br />
+        <form className="form23" onSubmit={onSubmit}>
+          <input
+            type="text"
+            required
+            placeholder="Book"
+            onChange={changeBookName}
+            value={bookname}
+            className="form-control form-group"
+          />
+          <input
+            type="text"
+            required
+            placeholder="Author"
+            onChange={changeUsername}
+            value={username}
+            className="form-control form-group"
+          />
+          <input
+            type="email"
+            required
+            placeholder="Email"
+            onChange={changeEmail}
+            value={email}
+            className="form-control form-group"
+          />
+          <input
+            type="text"
+            required
+            pattern="^\d{10}$"
+            placeholder="Phone Number (10 digits)"
+            onChange={changePhoneno}
+            value={phoneno}
+            className="form-control form-group"
+          />
+          <div className="d-flex justify-content-between">
             <input
-              type="text"
-              required
-              placeholder="Book"
-              onChange={changeBookName}
-              value={bookname}
-              className="form-control form-group"
+              type="submit"
+              className="  btn btn-outline-primary px-5"
+              value="Sell"
             />
-            <input
-              type="text"
-              required
-              placeholder="Author"
-              onChange={changeUsername}
-              value={username}
-              className="form-control form-group"
-            />
-            <input
-              type="email"
-              required
-              placeholder="Email"
-              onChange={changeEmail}
-              value={email}
-              className="form-control form-group"
-            />
-            <input
-              type="text"
-              required
-              pattern="^\d{10}$"
-              placeholder="Phone Number (10 digits)"
-              onChange={changePhoneno}
-              value={phoneno}
-              className="form-control form-group"
-            />
-            <div className="d-flex justify-content-between">
-              <input
-                type="submit"
-                className="  btn btn-outline-primary px-5"
-                value="Sell"
-              />
-              <Link to="/search" className=" btn btn-outline-primary px-5">
-                Library
-              </Link>
-              <button
-                value="Sign Out"
-                onClick={(e) => {
-                  e.preventDefault();
-                  cookies.remove('email');
-                  history.push('/');
-                }}
-                className="btn btn-outline-primary px-5">
-                Sign Out
-              </button>
-            </div>
-          </form>
-        </div>
+            <Link to="/search" className=" btn btn-outline-primary px-5">
+              Library
+            </Link>
+            <button
+              value="Sign Out"
+              onClick={(e) => {
+                e.preventDefault();
+                cookies.remove('email');
+                history.push('/');
+              }}
+              className="btn btn-outline-primary px-5">
+              Sign Out
+            </button>
+          </div>
+        </form>
       </div>
     </div>
   );

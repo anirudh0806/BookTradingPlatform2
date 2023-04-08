@@ -116,4 +116,62 @@ router.post('/add', async (req, res) => {
       });
   }
 });
+router.post('/addFromSearch', async (req, res) => {
+  book = req.body.book;
+  const cart = req.body.cart;
+  let flag = false;
+  cart.forEach((element) => {
+    if (element._id === String(book._id)) {
+      flag = true;
+    }
+  });
+  if (flag) res.status(200).json({ message: 'Item already present in cart' });
+  else {
+    cart.push(book);
+    console.log(cart);
+    User.update({ email: req.body.email }, { cart: cart })
+      .exec()
+      .then((result) => {
+        console.log(result);
+        res.status(200).json({ message: 'Added to cart' });
+      })
+      .catch((err) => {
+        console.log(err);
+        res.status(500).json({ error: err });
+      });
+  }
+});
+router.post('/deleteFromCart', async (req, res) => {
+  index = req.body.index;
+  const cart = req.body.cart;
+  cart.splice(index,1)
+    User.update({ email: req.body.email }, { cart: cart })
+      .exec()
+      .then((result) => {
+        console.log(result);
+        res.status(200).json({ message: 'Deleted Item' });
+      })
+      .catch((err) => {
+        console.log(err);
+        res.status(500).json({ error: err });
+      });
+  })
+  router.post('/clearCart', async (req, res) => {
+    cart = req.body.cart;
+    cart.forEach(async (element) => {
+      console.log(element._id );
+      if(element._id.length==24)
+      await fetchTemplateCopy.deleteOne({ _id: element._id });
+    });
+      User.update({ email: req.body.email }, { cart: [] })
+        .exec()
+        .then((result) => {
+          console.log(result);
+          res.status(200).json({ message: 'Purchase Successful' });
+        })
+        .catch((err) => {
+          console.log(err);
+          res.status(500).json({ error: err });
+        });
+    })
 module.exports = router;

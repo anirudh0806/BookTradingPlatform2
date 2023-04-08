@@ -7,6 +7,7 @@ import Register from './components/auth/Register';
 import Fetch from './components/auth/App';
 import Search from './components/auth/search';
 import Searchbar from './components/auth/searchbar';
+import Cart from './components/auth/Cart';
 
 class App extends Component {
   constructor(props) {
@@ -28,6 +29,9 @@ class App extends Component {
         </Route>
         <Route exact path="/find">
           <Searchbar />
+        </Route>
+        <Route exact path="/Cart">
+          <Cart />
         </Route>
       </Router>
     );
