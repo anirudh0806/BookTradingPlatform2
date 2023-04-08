@@ -3,35 +3,28 @@
   margin: 10px;
   margin-left: 30px;
 }
-
-.whole {
-  margin-top: initial;
-  background-color: black;
-  height:100%;
-}
-
 .main1 {
   background: linear-gradient(
     90deg,
     rgb(39, 176, 255) 0%,
     rgb(0, 232, 236) 100%
   );
-
+  border-radius: 20px;
   box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 7px 20px 0 rgba(0, 0, 0, 0.2);
   width: 1000px;
-  height: 230px;
+  padding: 10px;
   margin: 0px auto;
 }
 
 .details_btn {
   margin-left: 850px;
-  background-color: rgb(53, 224, 124);
+  background-color: green;
   color: rgb(255, 255, 255);
   border-width: unset;
   width: 10%;
+  border-radius: 10px;
 }
 .details_btn:hover {
-  font-size: 20px;
   background-color: rgb(55, 212, 55);
 }
 

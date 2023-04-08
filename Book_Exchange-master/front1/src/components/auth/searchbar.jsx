@@ -64,11 +64,14 @@ export default function Searchbar() {
         setResult(data.data.items);
       });
   }
+  function truncate(str) {
+    return str.length > 25 ? str.substring(0, 21) + "..." : str;
+  }
   return (
-    <form onSubmit={handleSubmit}>
-      <div className="card-header main-search">
-        <div className="row">
-          <div className="col-12 col-md-3 col-xl-3">
+    <form onSubmit={handleSubmit} className=''>
+      <div className="card-header main-search ">
+        <div className="row mx-auto justify-content-center">
+          <div className="col-12 col-md-5 col-xl-5">
             <input
               onChange={handleChange}
               className="AutoFocus form-control"
@@ -85,16 +88,16 @@ export default function Searchbar() {
           </div>
         </div>
       </div>
-      <div className="row container">
+      <div className="row container mx-auto">
         {result.map((book, index) => (
-          <div key={index} className="child col-4">
+          <div key={index} className="child col-4 text-center">
             <div className="text-center">
               <img
                 style={{ height: '150px' }}
                 src={
                   book.volumeInfo.imageLinks !== undefined
                     ? book.volumeInfo.imageLinks.thumbnail
-                    : 'lite'
+                    : 'https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg?20200913095930'
                 }
                 alt={book.title}
               />
@@ -102,20 +105,20 @@ export default function Searchbar() {
                 {book.volumeInfo.title ? book.volumeInfo.title : 'N/A'}
               </p>
               <br></br>
-              <Card style={{ width: '18rem' }}>
+              <Card className='text-center mx-auto' style={{ width: '18rem' }}>
                 <ListGroup>
-                  <ListGroup.Item>
-                    {book.volumeInfo.industryIdentifiers
+                  <ListGroup.Item  style={{overflow: 'hidden', textOverflow: 'ellipsis'}}>
+                    {truncate(book.volumeInfo.industryIdentifiers
                       ? book.volumeInfo.industryIdentifiers[0].type +
                         ' : ' +
                         book.volumeInfo.industryIdentifiers[0].identifier
-                      : ''}
+                      : 'Industry Identifiers : N/A')}
                   </ListGroup.Item>
-                  <ListGroup.Item>
-                    Author:
-                    {book.volumeInfo.authors == undefined
-                      ? 'NA'
-                      : book.volumeInfo.authors.join(', ')}
+                  <ListGroup.Item style={{overflow: 'hidden', textOverflow: 'ellipsis'}}>
+                    Author :
+                    {truncate(book.volumeInfo.authors == undefined
+                      ? ' N/A'
+                      : book.volumeInfo.authors.join(', '))}
                   </ListGroup.Item>
                   <ListGroup.Item>
                     <Button

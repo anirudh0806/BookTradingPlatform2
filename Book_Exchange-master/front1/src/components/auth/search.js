@@ -55,35 +55,34 @@ export default function Search(props) {
     }
   }
   return isLoaded ? (
-    <div className="whole">
-      <div className="text-center">
-        <Link to="/profile" className=" float-left btn btn-danger    mx-5 px-5">
+    <div style={{height: "100vh"}} className="bg-dark">
+      <div>
+        <Link to="/profile" style={{}} className="position-fixed btn btn-danger m-2 px-5">
           {' '}
           Back{' '}
         </Link>
-        <b className="text-center title m-auto">LIBRARY</b>
-        <p></p>
+        <div className='text-center'><b className="text-center title m-auto">LIBRARY</b></div>
       </div>
       <ul>
         <div>
-          {data.map((item) => (
+          {data.length>0?data.map((item) => (
             <div key={item._id}>
               <li className="main1">
                 <br />
                 <p className="details">
-                  BookName : <b>{item.bookName}</b>{' '}
+                  BookName : <b>&nbsp;&nbsp;{item.bookName}</b>{' '}
                 </p>
                 <p className="details">
-                  Author : <b>{item.author}</b>
+                  Author &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <b>&nbsp;&nbsp;{item.author}</b>
                 </p>
                 <p className="details">
-                  Email : <b>{item.email}</b>
+                  Email &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <b>&nbsp;&nbsp;{item.email}</b>
                 </p>
                 <p className="details">
-                  Phone : <b>{item.phoneno}</b>
+                  Phone &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <b>&nbsp;&nbsp;{item.phoneno}</b>
                 </p>
                 <button
-                  className="details_btn"
+                  className="details_btn my-2"
                   id={item._id}
                   onClick={handleClick}>
                   {' '}
@@ -100,7 +99,7 @@ export default function Search(props) {
               </li>
               <br />
             </div>
-          ))}
+          )):<div  className="text-center h3 py-5 text-light">NO BOOKS FOUND</div>}
           <br />
           <div className="text-center text-light">
             {' '}
